@@ -1,0 +1,33 @@
+@auth = Basic {{$dotenv OPTIMIZELY_MANAGMENT_API_APP_KEY}}:{{$dotenv OPTIMIZELY_MANAGMENT_API_APP_SECRET}}
+@revalidateScret = {{$dotenv OPTIMIZELY_REVALIDATE_SECRET}}
+@productionSiteUrlVercel = https://opti-masterclass-two.vercel.app
+@productionSiteUrl = https://18501dd42781.ngrok-free.app
+
+### Registers new webhook
+### @name AddWebhook
+POST https://prod.cg.optimizely.com/api/webhooks
+Authorization: {{auth}}
+Content-Type: application/json
+
+{
+  "request": {
+    "url": "{{productionSiteUrl}}/api/revalidate?cg_webhook_secret={{revalidateScret}}",
+    "method": "post"
+  },
+  "topics": [
+    "doc.updated"
+  ],
+  "disabled": false
+}
+
+### Lists registered webhooks
+### @name ListWebhooks
+https://cg.optimizely.com/api/webhooks
+Authorization: {{auth}}
+
+
+@webhookToDeleteId = 6a743529-af4e-4934-8d51-b18f2d41452b
+### Deletes webhook
+### @name DeleteWebhook
+DELETE https://cg.optimizely.com/api/webhooks/{{webhookToDeleteId}}
+Authorization: {{auth}}

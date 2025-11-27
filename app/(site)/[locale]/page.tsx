@@ -10,7 +10,7 @@ export default async function HomePage(props: {
   const locales = getValidLocale(locale)
   const pageResponse = await optimizely.GetStartPage({ locales })
 
-  const startPage = pageResponse.data?.StartPage?.items?.[0]
+  const startPage = pageResponse.data?.StartPage?.item
   const blocks = (startPage?.blocks ?? []).filter(
     (block) => block !== null && block !== undefined
   )

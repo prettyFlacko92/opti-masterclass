@@ -27,7 +27,7 @@ export default async function Page(props: {
     { key, version, locales },
     { preview: true }
   )
-  const experience = experienceData.data?.SEOExperience?.items?.[0] as
+  const experience = experienceData.data?.SEOExperience?.item as
     | SafeVisualBuilderExperience
     | undefined
 

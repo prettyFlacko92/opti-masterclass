@@ -2518,6 +2518,7 @@ export type Query = {
   StartPage: Maybe<StartPageOutput>;
   StoryBlock: Maybe<StoryBlockOutput>;
   SysContentFolder: Maybe<SysContentFolderOutput>;
+  TestPage: Maybe<TestPageOutput>;
   TestimonialItem: Maybe<TestimonialItemOutput>;
   TestimonialItemBlock: Maybe<TestimonialItemBlockOutput>;
   TestimonialsBlock: Maybe<TestimonialsBlockOutput>;
@@ -2898,6 +2899,20 @@ export type QuerySysContentFolderArgs = {
 };
 
 
+export type QueryTestPageArgs = {
+  cursor: InputMaybe<Scalars['String']['input']>;
+  ids: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy: InputMaybe<TestPageOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  track: InputMaybe<Scalars['String']['input']>;
+  usePinned: InputMaybe<UsePinnedInput>;
+  variation: InputMaybe<VariationInput>;
+  where: InputMaybe<TestPageWhereInput>;
+};
+
+
 export type QueryTestimonialItemArgs = {
   cursor: InputMaybe<Scalars['String']['input']>;
   ids: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -3107,6 +3122,7 @@ export type QueryRef = {
   StartPage: Maybe<StartPageOutput>;
   StoryBlock: Maybe<StoryBlockOutput>;
   SysContentFolder: Maybe<SysContentFolderOutput>;
+  TestPage: Maybe<TestPageOutput>;
   TestimonialItem: Maybe<TestimonialItemOutput>;
   TestimonialItemBlock: Maybe<TestimonialItemBlockOutput>;
   TestimonialsBlock: Maybe<TestimonialsBlockOutput>;
@@ -3484,6 +3500,20 @@ export type QueryRefSysContentFolderArgs = {
   usePinned: InputMaybe<UsePinnedInput>;
   variation: InputMaybe<VariationInput>;
   where: InputMaybe<SysContentFolderWhereInput>;
+};
+
+
+export type QueryRefTestPageArgs = {
+  cursor: InputMaybe<Scalars['String']['input']>;
+  ids: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy: InputMaybe<TestPageOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  track: InputMaybe<Scalars['String']['input']>;
+  usePinned: InputMaybe<UsePinnedInput>;
+  variation: InputMaybe<VariationInput>;
+  where: InputMaybe<TestPageWhereInput>;
 };
 
 
@@ -4240,6 +4270,73 @@ export type SysContentFolderWhereInput = {
   _modified: InputMaybe<DateFilterInput>;
   _not: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
   _or: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
+};
+
+export type TestPage = IData & _IContent & _IPage & {
+  __typename?: 'TestPage';
+  /** @deprecated Use `_link` field instead */
+  _children: Maybe<QueryRef>;
+  _deleted: Maybe<Scalars['Bool']['output']>;
+  _fulltext: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id: Maybe<Scalars['String']['output']>;
+  _link: Maybe<QueryRef>;
+  _metadata: Maybe<IContentMetadata>;
+  _modified: Maybe<Scalars['Date']['output']>;
+  _score: Maybe<Scalars['Float']['output']>;
+  _track: Maybe<Scalars['String']['output']>;
+};
+
+
+export type TestPage_FulltextArgs = {
+  highlight: InputMaybe<HighlightOptions>;
+};
+
+
+export type TestPage_LinkArgs = {
+  type: InputMaybe<LinkTypes>;
+};
+
+export type TestPageAutocomplete = {
+  __typename?: 'TestPageAutocomplete';
+  _metadata: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type TestPageFacet = {
+  __typename?: 'TestPageFacet';
+  _metadata: Maybe<IContentMetadataFacet>;
+};
+
+export type TestPageOrderByInput = {
+  _metadata: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore: InputMaybe<Scalars['Float']['input']>;
+  _modified: InputMaybe<OrderBy>;
+  _ranking: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type TestPageOutput = {
+  __typename?: 'TestPageOutput';
+  autocomplete: Maybe<TestPageAutocomplete>;
+  cursor: Maybe<Scalars['String']['output']>;
+  facets: Maybe<TestPageFacet>;
+  item: Maybe<TestPage>;
+  items: Maybe<Array<Maybe<TestPage>>>;
+  total: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type TestPageOutputTotalArgs = {
+  all: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TestPageWhereInput = {
+  _and: InputMaybe<Array<InputMaybe<TestPageWhereInput>>>;
+  _fulltext: InputMaybe<SearchableStringFilterInput>;
+  _metadata: InputMaybe<IContentMetadataWhereInput>;
+  _modified: InputMaybe<DateFilterInput>;
+  _not: InputMaybe<Array<InputMaybe<TestPageWhereInput>>>;
+  _or: InputMaybe<Array<InputMaybe<TestPageWhereInput>>>;
 };
 
 export type TestimonialItem = IData & _IComponent & _IContent & {
@@ -5575,6 +5672,12 @@ export type AllPagesQuery = { __typename?: 'Query', _Content: { __typename?: '_C
           | { __typename?: 'ItemMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'MediaMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
          | null }
+      | { __typename?: 'TestPage', _metadata:
+          | { __typename?: 'ContentMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'InstanceMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'ItemMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'MediaMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+         | null }
       | { __typename?: 'TestimonialItem', _metadata:
           | { __typename?: 'ContentMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'InstanceMetadata', displayName: string | null, types: Array<string | null> | null, status: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
@@ -5660,7 +5763,7 @@ export type GetContentByGuidQueryVariables = Exact<{
 }>;
 
 
-export type GetContentByGuidQuery = { __typename?: 'Query', _Content: { __typename?: '_ContentOutput', items: Array<
+export type GetContentByGuidQuery = { __typename?: 'Query', _Content: { __typename?: '_ContentOutput', item:
       | { __typename?: 'AvailabilityBlock', _metadata:
           | { __typename?: 'ContentMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'InstanceMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
@@ -5811,6 +5914,12 @@ export type GetContentByGuidQuery = { __typename?: 'Query', _Content: { __typena
           | { __typename?: 'ItemMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'MediaMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
          | null }
+      | { __typename?: 'TestPage', _metadata:
+          | { __typename?: 'ContentMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'InstanceMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'ItemMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'MediaMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+         | null }
       | { __typename?: 'TestimonialItem', _metadata:
           | { __typename?: 'ContentMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'InstanceMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
@@ -5889,14 +5998,14 @@ export type GetContentByGuidQuery = { __typename?: 'Query', _Content: { __typena
           | { __typename?: 'ItemMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'MediaMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
          | null }
-     | null> | null } | null };
+     | null } | null };
 
 export type GetFooterQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
 }>;
 
 
-export type GetFooterQuery = { __typename?: 'Query', Footer: { __typename?: 'FooterOutput', items: Array<{ __typename?: 'Footer', copyrightText: string | null, socialLinks: Array<
+export type GetFooterQuery = { __typename?: 'Query', Footer: { __typename?: 'FooterOutput', item: { __typename?: 'Footer', copyrightText: string | null, socialLinks: Array<
         | { __typename: 'AvailabilityBlock' }
         | { __typename: 'BlankExperience' }
         | { __typename: 'BlankSection' }
@@ -5922,6 +6031,7 @@ export type GetFooterQuery = { __typename?: 'Query', Footer: { __typename?: 'Foo
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock' }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock' }
@@ -5968,6 +6078,7 @@ export type GetFooterQuery = { __typename?: 'Query', Footer: { __typename?: 'Foo
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6000,6 +6111,7 @@ export type GetFooterQuery = { __typename?: 'Query', Footer: { __typename?: 'Foo
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock' }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock' }
@@ -6013,14 +6125,14 @@ export type GetFooterQuery = { __typename?: 'Query', Footer: { __typename?: 'Foo
         | { __typename: '_Page' }
         | { __typename: '_Section' }
         | { __typename: '_Video' }
-       | null> | null } | null> | null } | null };
+       | null> | null } | null } | null };
 
 export type GetHeaderQueryVariables = Exact<{
   locale: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
 }>;
 
 
-export type GetHeaderQuery = { __typename?: 'Query', Header: { __typename?: 'HeaderOutput', items: Array<{ __typename?: 'Header', logo: string | null, ctaText: string | null, ctaHref: string | null, navItems: Array<
+export type GetHeaderQuery = { __typename?: 'Query', Header: { __typename?: 'HeaderOutput', item: { __typename?: 'Header', logo: string | null, ctaText: string | null, ctaHref: string | null, navItems: Array<
         | { __typename: 'AvailabilityBlock' }
         | { __typename: 'BlankExperience' }
         | { __typename: 'BlankSection' }
@@ -6046,6 +6158,7 @@ export type GetHeaderQuery = { __typename?: 'Query', Header: { __typename?: 'Hea
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock' }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock' }
@@ -6059,7 +6172,7 @@ export type GetHeaderQuery = { __typename?: 'Query', Header: { __typename?: 'Hea
         | { __typename: '_Page' }
         | { __typename: '_Section' }
         | { __typename: '_Video' }
-       | null> | null } | null> | null } | null };
+       | null> | null } | null } | null };
 
 export type GetPageByUrlQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
@@ -6067,7 +6180,7 @@ export type GetPageByUrlQueryVariables = Exact<{
 }>;
 
 
-export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 'CMSPageOutput', items: Array<{ __typename?: 'CMSPage', title: string | null, shortDescription: string | null, keywords: string | null, _modified: any | null, blocks: Array<
+export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 'CMSPageOutput', item: { __typename?: 'CMSPage', title: string | null, shortDescription: string | null, keywords: string | null, _modified: any | null, blocks: Array<
         | { __typename: 'AvailabilityBlock', availability: string | null, projectTypes: Array<string | null> | null }
         | { __typename: 'BlankExperience' }
         | { __typename: 'BlankSection' }
@@ -6107,6 +6220,7 @@ export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6148,6 +6262,7 @@ export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6192,6 +6307,7 @@ export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6210,6 +6326,7 @@ export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock', story: string | null, highlights: Array<string | null> | null }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock', title: string | null, testimonials: Array<
@@ -6238,6 +6355,7 @@ export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
             | { __typename: 'TestimonialsBlock' }
@@ -6262,14 +6380,14 @@ export type GetPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 
         | { __typename: '_Page' }
         | { __typename: '_Section' }
         | { __typename: '_Video' }
-       | null> | null } | null> | null } | null };
+       | null> | null } | null } | null };
 
 export type GetStartPageQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
 }>;
 
 
-export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?: 'StartPageOutput', items: Array<{ __typename?: 'StartPage', title: string | null, shortDescription: string | null, keywords: string | null, blocks: Array<
+export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?: 'StartPageOutput', item: { __typename?: 'StartPage', title: string | null, shortDescription: string | null, keywords: string | null, blocks: Array<
         | { __typename: 'AvailabilityBlock', availability: string | null, projectTypes: Array<string | null> | null }
         | { __typename: 'BlankExperience' }
         | { __typename: 'BlankSection' }
@@ -6309,6 +6427,7 @@ export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6350,6 +6469,7 @@ export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6394,6 +6514,7 @@ export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -6412,6 +6533,7 @@ export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock', story: string | null, highlights: Array<string | null> | null }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock', title: string | null, testimonials: Array<
@@ -6440,6 +6562,7 @@ export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
             | { __typename: 'TestimonialsBlock' }
@@ -6464,7 +6587,7 @@ export type GetStartPageQuery = { __typename?: 'Query', StartPage: { __typename?
         | { __typename: '_Page' }
         | { __typename: '_Section' }
         | { __typename: '_Video' }
-       | null> | null } | null> | null } | null };
+       | null> | null } | null } | null };
 
 export type GetVisualBuilderBySlugQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
@@ -6472,7 +6595,7 @@ export type GetVisualBuilderBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience: { __typename?: 'SEOExperienceOutput', items: Array<{ __typename?: 'SEOExperience', title: string | null, shortDescription: string | null, keywords: string | null, composition: { __typename?: 'CompositionStructureNode', nodes: Array<
+export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience: { __typename?: 'SEOExperienceOutput', item: { __typename?: 'SEOExperience', title: string | null, shortDescription: string | null, keywords: string | null, composition: { __typename?: 'CompositionStructureNode', nodes: Array<
           | { __typename?: 'CompositionComponentNode', nodeType: string | null, key: string | null, component:
               | { __typename: 'AvailabilityBlock', availability: string | null, projectTypes: Array<string | null> | null }
               | { __typename: 'BlankSection' }
@@ -6506,6 +6629,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock' }
                   | { __typename: 'TestimonialsBlock' }
@@ -6547,6 +6671,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock' }
                   | { __typename: 'TestimonialsBlock' }
@@ -6590,6 +6715,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock' }
                   | { __typename: 'TestimonialsBlock' }
@@ -6634,6 +6760,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
                   | { __typename: 'TestimonialsBlock' }
@@ -6692,6 +6819,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock' }
                               | { __typename: 'TestimonialsBlock' }
@@ -6733,6 +6861,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock' }
                               | { __typename: 'TestimonialsBlock' }
@@ -6776,6 +6905,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock' }
                               | { __typename: 'TestimonialsBlock' }
@@ -6820,6 +6950,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
                               | { __typename: 'TestimonialsBlock' }
@@ -6842,7 +6973,7 @@ export type GetVisualBuilderBySlugQuery = { __typename?: 'Query', SEOExperience:
                      | null> | null }
                  | null> | null }
              | null> | null, displaySettings: Array<{ __typename?: 'CompositionDisplaySetting', value: string | null, key: string | null } | null> | null }
-         | null> | null } | null } | null> | null } | null };
+         | null> | null } | null } | null } | null };
 
 export type GetComponentByKeyQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
@@ -6884,6 +7015,7 @@ export type GetComponentByKeyQuery = { __typename?: 'Query', _Component: { __typ
           | { __typename: 'StartPage' }
           | { __typename: 'StoryBlock' }
           | { __typename: 'SysContentFolder' }
+          | { __typename: 'TestPage' }
           | { __typename: 'TestimonialItem' }
           | { __typename: 'TestimonialItemBlock' }
           | { __typename: 'TestimonialsBlock' }
@@ -6925,6 +7057,7 @@ export type GetComponentByKeyQuery = { __typename?: 'Query', _Component: { __typ
           | { __typename: 'StartPage' }
           | { __typename: 'StoryBlock' }
           | { __typename: 'SysContentFolder' }
+          | { __typename: 'TestPage' }
           | { __typename: 'TestimonialItem' }
           | { __typename: 'TestimonialItemBlock' }
           | { __typename: 'TestimonialsBlock' }
@@ -6968,6 +7101,7 @@ export type GetComponentByKeyQuery = { __typename?: 'Query', _Component: { __typ
           | { __typename: 'StartPage' }
           | { __typename: 'StoryBlock' }
           | { __typename: 'SysContentFolder' }
+          | { __typename: 'TestPage' }
           | { __typename: 'TestimonialItem' }
           | { __typename: 'TestimonialItemBlock' }
           | { __typename: 'TestimonialsBlock' }
@@ -7012,6 +7146,7 @@ export type GetComponentByKeyQuery = { __typename?: 'Query', _Component: { __typ
           | { __typename: 'StartPage' }
           | { __typename: 'StoryBlock' }
           | { __typename: 'SysContentFolder' }
+          | { __typename: 'TestPage' }
           | { __typename: 'TestimonialItem' }
           | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
           | { __typename: 'TestimonialsBlock' }
@@ -7036,7 +7171,7 @@ export type GetContentByKeyAndVersionQueryVariables = Exact<{
 }>;
 
 
-export type GetContentByKeyAndVersionQuery = { __typename?: 'Query', _Content: { __typename?: '_ContentOutput', items: Array<
+export type GetContentByKeyAndVersionQuery = { __typename?: 'Query', _Content: { __typename?: '_ContentOutput', item:
       | { __typename: 'AvailabilityBlock', _metadata:
           | { __typename?: 'ContentMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'InstanceMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
@@ -7187,6 +7322,12 @@ export type GetContentByKeyAndVersionQuery = { __typename?: 'Query', _Content: {
           | { __typename?: 'ItemMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'MediaMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
          | null }
+      | { __typename: 'TestPage', _metadata:
+          | { __typename?: 'ContentMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'InstanceMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'ItemMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+          | { __typename?: 'MediaMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
+         | null }
       | { __typename: 'TestimonialItem', _metadata:
           | { __typename?: 'ContentMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'InstanceMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
@@ -7265,7 +7406,7 @@ export type GetContentByKeyAndVersionQuery = { __typename?: 'Query', _Content: {
           | { __typename?: 'ItemMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
           | { __typename?: 'MediaMetadata', displayName: string | null, version: string | null, key: string | null, url: { __typename?: 'ContentUrl', base: string | null, internal: string | null, hierarchical: string | null, default: string | null, type: string | null } | null }
          | null }
-     | null> | null } | null };
+     | null } | null };
 
 export type GetPreviewPageByUrlQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
@@ -7274,7 +7415,7 @@ export type GetPreviewPageByUrlQueryVariables = Exact<{
 }>;
 
 
-export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 'CMSPageOutput', items: Array<{ __typename?: 'CMSPage', blocks: Array<
+export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __typename?: 'CMSPageOutput', item: { __typename?: 'CMSPage', blocks: Array<
         | { __typename: 'AvailabilityBlock', availability: string | null, projectTypes: Array<string | null> | null }
         | { __typename: 'BlankExperience' }
         | { __typename: 'BlankSection' }
@@ -7314,6 +7455,7 @@ export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __type
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -7355,6 +7497,7 @@ export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __type
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -7399,6 +7542,7 @@ export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __type
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -7417,6 +7561,7 @@ export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __type
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock', story: string | null, highlights: Array<string | null> | null }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock', title: string | null, testimonials: Array<
@@ -7445,6 +7590,7 @@ export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __type
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
             | { __typename: 'TestimonialsBlock' }
@@ -7469,7 +7615,7 @@ export type GetPreviewPageByUrlQuery = { __typename?: 'Query', CMSPage: { __type
         | { __typename: '_Page' }
         | { __typename: '_Section' }
         | { __typename: '_Video' }
-       | null> | null } | null> | null } | null };
+       | null> | null } | null } | null };
 
 export type GetPreviewStartPageQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
@@ -7477,7 +7623,7 @@ export type GetPreviewStartPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __typename?: 'StartPageOutput', items: Array<{ __typename?: 'StartPage', blocks: Array<
+export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __typename?: 'StartPageOutput', item: { __typename?: 'StartPage', blocks: Array<
         | { __typename: 'AvailabilityBlock', availability: string | null, projectTypes: Array<string | null> | null }
         | { __typename: 'BlankExperience' }
         | { __typename: 'BlankSection' }
@@ -7517,6 +7663,7 @@ export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __ty
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -7558,6 +7705,7 @@ export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __ty
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -7602,6 +7750,7 @@ export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __ty
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock' }
             | { __typename: 'TestimonialsBlock' }
@@ -7620,6 +7769,7 @@ export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __ty
         | { __typename: 'StartPage' }
         | { __typename: 'StoryBlock', story: string | null, highlights: Array<string | null> | null }
         | { __typename: 'SysContentFolder' }
+        | { __typename: 'TestPage' }
         | { __typename: 'TestimonialItem' }
         | { __typename: 'TestimonialItemBlock' }
         | { __typename: 'TestimonialsBlock', title: string | null, testimonials: Array<
@@ -7648,6 +7798,7 @@ export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __ty
             | { __typename: 'StartPage' }
             | { __typename: 'StoryBlock' }
             | { __typename: 'SysContentFolder' }
+            | { __typename: 'TestPage' }
             | { __typename: 'TestimonialItem' }
             | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
             | { __typename: 'TestimonialsBlock' }
@@ -7672,7 +7823,7 @@ export type GetPreviewStartPageQuery = { __typename?: 'Query', StartPage: { __ty
         | { __typename: '_Page' }
         | { __typename: '_Section' }
         | { __typename: '_Video' }
-       | null> | null } | null> | null } | null };
+       | null> | null } | null } | null };
 
 export type VisualBuilderQueryVariables = Exact<{
   locales: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
@@ -7681,7 +7832,7 @@ export type VisualBuilderQueryVariables = Exact<{
 }>;
 
 
-export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __typename?: 'SEOExperienceOutput', items: Array<{ __typename?: 'SEOExperience', composition: { __typename?: 'CompositionStructureNode', nodes: Array<
+export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __typename?: 'SEOExperienceOutput', item: { __typename?: 'SEOExperience', composition: { __typename?: 'CompositionStructureNode', nodes: Array<
           | { __typename?: 'CompositionComponentNode', nodeType: string | null, key: string | null, component:
               | { __typename: 'AvailabilityBlock', availability: string | null, projectTypes: Array<string | null> | null }
               | { __typename: 'BlankSection' }
@@ -7715,6 +7866,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock' }
                   | { __typename: 'TestimonialsBlock' }
@@ -7756,6 +7908,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock' }
                   | { __typename: 'TestimonialsBlock' }
@@ -7799,6 +7952,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock' }
                   | { __typename: 'TestimonialsBlock' }
@@ -7843,6 +7997,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                   | { __typename: 'StartPage' }
                   | { __typename: 'StoryBlock' }
                   | { __typename: 'SysContentFolder' }
+                  | { __typename: 'TestPage' }
                   | { __typename: 'TestimonialItem' }
                   | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
                   | { __typename: 'TestimonialsBlock' }
@@ -7901,6 +8056,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock' }
                               | { __typename: 'TestimonialsBlock' }
@@ -7942,6 +8098,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock' }
                               | { __typename: 'TestimonialsBlock' }
@@ -7985,6 +8142,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock' }
                               | { __typename: 'TestimonialsBlock' }
@@ -8029,6 +8187,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
                               | { __typename: 'StartPage' }
                               | { __typename: 'StoryBlock' }
                               | { __typename: 'SysContentFolder' }
+                              | { __typename: 'TestPage' }
                               | { __typename: 'TestimonialItem' }
                               | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
                               | { __typename: 'TestimonialsBlock' }
@@ -8056,7 +8215,7 @@ export type VisualBuilderQuery = { __typename?: 'Query', SEOExperience: { __type
         | { __typename?: 'InstanceMetadata', key: string | null, version: string | null }
         | { __typename?: 'ItemMetadata', key: string | null, version: string | null }
         | { __typename?: 'MediaMetadata', key: string | null, version: string | null }
-       | null } | null> | null } | null };
+       | null } | null } | null };
 
 export type HeroBlockFragmentFragment = { __typename?: 'HeroBlock', title: string | null, subtitle: string | null, decorationColorsPrimary: string | null, decorationColorsSecondary: string | null, showDecoration: boolean | null };
 
@@ -8088,6 +8247,7 @@ export type LogosBlockFragmentFragment = { __typename?: 'LogosBlock', logos: Arr
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock' }
     | { __typename: 'TestimonialsBlock' }
@@ -8129,6 +8289,7 @@ export type PortfolioGridBlockFragmentFragment = { __typename?: 'PortfolioGridBl
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock' }
     | { __typename: 'TestimonialsBlock' }
@@ -8170,6 +8331,7 @@ export type ServicesBlockFragmentFragment = { __typename?: 'ServicesBlock', serv
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock' }
     | { __typename: 'TestimonialsBlock' }
@@ -8211,6 +8373,7 @@ export type TestimonialsBlockFragmentFragment = { __typename?: 'TestimonialsBloc
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
     | { __typename: 'TestimonialsBlock' }
@@ -8284,6 +8447,7 @@ type ItemsInContentArea_LogosBlock_Fragment = { __typename: 'LogosBlock', logos:
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock' }
     | { __typename: 'TestimonialsBlock' }
@@ -8327,6 +8491,7 @@ type ItemsInContentArea_PortfolioGridBlock_Fragment = { __typename: 'PortfolioGr
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock' }
     | { __typename: 'TestimonialsBlock' }
@@ -8376,6 +8541,7 @@ type ItemsInContentArea_ServicesBlock_Fragment = { __typename: 'ServicesBlock', 
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock' }
     | { __typename: 'TestimonialsBlock' }
@@ -8398,6 +8564,8 @@ type ItemsInContentArea_StartPage_Fragment = { __typename: 'StartPage' };
 type ItemsInContentArea_StoryBlock_Fragment = { __typename: 'StoryBlock', story: string | null, highlights: Array<string | null> | null };
 
 type ItemsInContentArea_SysContentFolder_Fragment = { __typename: 'SysContentFolder' };
+
+type ItemsInContentArea_TestPage_Fragment = { __typename: 'TestPage' };
 
 type ItemsInContentArea_TestimonialItem_Fragment = { __typename: 'TestimonialItem' };
 
@@ -8429,6 +8597,7 @@ type ItemsInContentArea_TestimonialsBlock_Fragment = { __typename: 'Testimonials
     | { __typename: 'StartPage' }
     | { __typename: 'StoryBlock' }
     | { __typename: 'SysContentFolder' }
+    | { __typename: 'TestPage' }
     | { __typename: 'TestimonialItem' }
     | { __typename: 'TestimonialItemBlock', fullName: string | null, position: string | null, content: string | null, avatarSrc: string | null }
     | { __typename: 'TestimonialsBlock' }
@@ -8490,6 +8659,7 @@ export type ItemsInContentAreaFragment =
   | ItemsInContentArea_StartPage_Fragment
   | ItemsInContentArea_StoryBlock_Fragment
   | ItemsInContentArea_SysContentFolder_Fragment
+  | ItemsInContentArea_TestPage_Fragment
   | ItemsInContentArea_TestimonialItem_Fragment
   | ItemsInContentArea_TestimonialItemBlock_Fragment
   | ItemsInContentArea_TestimonialsBlock_Fragment
@@ -8636,7 +8806,7 @@ export const AllPagesDocument = gql`
 export const GetContentByGuidDocument = gql`
     query GetContentByGuid($guid: String) {
   _Content(where: {_metadata: {key: {eq: $guid}}}) {
-    items {
+    item {
       _metadata {
         displayName
         version
@@ -8656,7 +8826,7 @@ export const GetContentByGuidDocument = gql`
 export const GetFooterDocument = gql`
     query getFooter($locales: [Locales]) {
   Footer(locale: $locales) {
-    items {
+    item {
       copyrightText
       socialLinks {
         __typename
@@ -8685,7 +8855,7 @@ export const GetFooterDocument = gql`
 export const GetHeaderDocument = gql`
     query getHeader($locale: [Locales]) {
   Header(locale: $locale) {
-    items {
+    item {
       logo
       ctaText
       ctaHref
@@ -8703,7 +8873,7 @@ export const GetHeaderDocument = gql`
 export const GetPageByUrlDocument = gql`
     query getPageByURL($locales: [Locales], $slug: String) {
   CMSPage(locale: $locales, where: {_metadata: {url: {default: {eq: $slug}}}}) {
-    items {
+    item {
       title
       shortDescription
       keywords
@@ -8718,7 +8888,7 @@ export const GetPageByUrlDocument = gql`
 export const GetStartPageDocument = gql`
     query GetStartPage($locales: [Locales]) {
   StartPage(locale: $locales) {
-    items {
+    item {
       title
       shortDescription
       keywords
@@ -8735,7 +8905,7 @@ export const GetVisualBuilderBySlugDocument = gql`
     locale: $locales
     where: {_metadata: {url: {default: {eq: $slug}}}}
   ) {
-    items {
+    item {
       title
       shortDescription
       keywords
@@ -8798,7 +8968,7 @@ export const GetComponentByKeyDocument = gql`
 export const GetContentByKeyAndVersionDocument = gql`
     query GetContentByKeyAndVersion($key: String, $ver: String) {
   _Content(where: {_metadata: {key: {eq: $key}, version: {eq: $ver}}}) {
-    items {
+    item {
       __typename
       _metadata {
         displayName
@@ -8822,7 +8992,7 @@ export const GetPreviewPageByUrlDocument = gql`
     locale: $locales
     where: {_metadata: {version: {eq: $version}}, _and: {_metadata: {url: {default: {eq: $slug}}}}}
   ) {
-    items {
+    item {
       blocks {
         ...ItemsInContentArea
       }
@@ -8833,7 +9003,7 @@ export const GetPreviewPageByUrlDocument = gql`
 export const GetPreviewStartPageDocument = gql`
     query GetPreviewStartPage($locales: [Locales], $version: String) {
   StartPage(locale: $locales, where: {_metadata: {version: {eq: $version}}}) {
-    items {
+    item {
       blocks {
         ...ItemsInContentArea
       }
@@ -8847,7 +9017,7 @@ export const VisualBuilderDocument = gql`
     locale: $locales
     where: {_metadata: {key: {eq: $key}}, _or: {_metadata: {version: {eq: $version}}}}
   ) {
-    items {
+    item {
       composition {
         nodes {
           nodeType

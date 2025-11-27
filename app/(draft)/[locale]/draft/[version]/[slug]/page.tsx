@@ -27,7 +27,7 @@ export default async function CmsPage(props: {
     { locales, slug: formattedSlug, version },
     { preview: true, previewToken: token }
   )
-  const page = pageResponse.data?.CMSPage?.items?.[0]
+  const page = pageResponse.data?.CMSPage?.item
 
   const blocks = (page?.blocks ?? []).filter(
     (block) => block !== null && block !== undefined
