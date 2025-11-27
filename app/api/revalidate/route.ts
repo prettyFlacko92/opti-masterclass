@@ -46,10 +46,6 @@ export async function POST(request: NextRequest) {
 
 function validateWebhookSecret(request: NextRequest) {
   const webhookSecret = request.nextUrl.searchParams.get('cg_webhook_secret')
-  
-  console.log('webhookSecret from request: ', webhookSecret)
-  console.log('webhookSecret from env: ', OPTIMIZELY_REVALIDATE_SECRET)
-
   if (webhookSecret !== OPTIMIZELY_REVALIDATE_SECRET) {
     throw new Error('Invalid credentials')
   }
